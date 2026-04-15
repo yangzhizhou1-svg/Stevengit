@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudDrop | Premium File Hosting</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS DASAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Font default untuk elemen lain (seperti subtitle) agar tetap bersih */
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+        }
+
+        .logo {
+            /* Menerapkan font pixel pada logo */
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span { color: #007bff; }
+
+        .btn-pro {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            /* Menerapkan font pixel pada tombol */
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* AREA SAPAAN (HERO) */
+        header {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        /* 2. MENERAPKAN FONT PIXEL PADA SELURUH JUDUL SAPAAN */
+        h1 {
+            font-family: 'Press Start 2P', cursive; /* SEMUA teks 'Halo, ' menggunakan font pixel */
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* 3. MENERAPKAN FONT PIXEL SECARA SPESIFIK PADA NAMA PENGGUNA */
+        h1 span {
+            font-family: 'Press Start 2P', cursive; /* Memastikan nama juga pixel */
+            color: #fff;
+            text-transform: lowercase; /* Menjaga nama tetap huruf kecil sesuai gambar */
+        }
+
+        p.subtitle {
+            color: #888;
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* OVERLAY INPUT NAMA */
+        #name-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .name-box {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #333;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .name-box h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .name-box input {
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+        }
+        
+        .name-box input:focus {
+            border-color: #007bff;
+        }
+
+        /* AREA UPLOAD */
+        .upload-container {
+            width: 90%;
+            max-width: 700px;
+            background: #111;
+            border: 2px dashed #333;
+            border-radius: 20px;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-container div.icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            /* Teks upload sudah menggunakan font pixel (dari gambar asli) */
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            color: #eee;
+        }
+
+        .upload-text span { color: #007bff; }
+
+        /* FOOTER BAR */
+        .footer-bar {
+            width: 90%;
+            max-width: 700px;
+            background: #161616;
+            padding: 15px 20px;
+            border-radius: 12px;
+            color: #444;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        /* KELAS UTILITAS */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div id="name-overlay">
+        <div class="name-box">
+            <h2>Masukkan Nama Anda</h2>
+            <input type="text" id="usernameInput" placeholder="Ketik nama...">
+            <button class="btn-pro" onclick="saveName()">Masuk</button>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">cloud<span>drop</span></a>
+        <button class="btn-pro">pro soon</button>
+    </nav>
+
+    <header>
+        <h1 id="greeting">Halo, <span id="userNameDisplay">...</span>!</h1>
+        <p class="subtitle">Kelola file proyekmu dengan aman di satu tempat.</p>
+    </header>
+
+    <div class="upload-container">
+        <div class="icon">📂</div>
+        <p class="upload-text">Ketuk untuk pilih file atau <span>Tarik ke sini</span></p>
+    </div>
+
+    <div class="footer-bar">
+        File Terbaru
+    </div>
+
+    <script>
+        // JAVASCRIPT: Logika untuk menyimpan dan menampilkan nama
+
+        // Ambil elemen DOM
+        const overlay = document.getElementById('name-overlay');
+        const input = document.getElementById('usernameInput');
+        const display = document.getElementById('userNameDisplay');
+
+        // 1. Cek apakah ada nama tersimpan saat halaman dibuka
+        window.onload = function() {
+            const savedName = localStorage.getItem('CloudDrop_username');
+            if (savedName) {
+                // Jika ada, sembunyikan popup dan tampilkan nama
+                overlay.classList.add('hidden');
+                display.innerText = savedName;
+            }
+        };
+
+        // 2. Fungsi untuk menyimpan nama yang diinput
+        function saveName() {
+            const inputValue = input.value;
+            if (inputValue.trim() !== "") {
+                // Simpan nama di LocalStorage browser
+                localStorage.setItem('CloudDrop_username', inputValue);
+                // Update tampilan sapaan
+                display.innerText = inputValue;
+                // Sembunyikan popup
+                overlay.classList.add('hidden');
+            } else {
+                alert("Tolong masukkan nama Anda terlebih dahulu.");
+            }
+        }
+
+        // 3. Opsional: Memungkinkan pengguna menekan 'Enter' untuk masuk
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                saveName();
+            }
+        });
+    </script>
+</body>
+</html>
