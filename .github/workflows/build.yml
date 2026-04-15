@@ -20,5 +20,5 @@ jobs:
         run: cordova build android
       - uses: actions/upload-artifact@v4
         with:
-          name: Aws-APK
+          name: Aws-something-APK
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
