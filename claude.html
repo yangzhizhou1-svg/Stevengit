@@ -10,11 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: #0a0a0a;
@@ -24,172 +20,91 @@
             align-items: center;
             min-height: 100vh;
             font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
         }
 
-        /* --- Input Username Overlay --- */
+        /* --- Overlay Nama --- */
         #name-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             z-index: 9999;
         }
 
         .name-box {
-            background: #111;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid #333;
-            width: 90%;
-            max-width: 400px;
+            background: #111; padding: 30px; border-radius: 15px;
+            text-align: center; border: 1px solid #333; width: 90%; max-width: 400px;
         }
 
-        .name-box h2 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
-            margin-bottom: 20px;
-            color: #007bff;
-        }
-
-        .name-box input {
-            background: #000;
-            border: 1px solid #333;
-            color: white;
-            padding: 12px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            width: 100%;
-            outline: none;
-            text-align: center;
-        }
-
-        /* --- Navbar --- */
-        nav {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-        }
-
-        .logo {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            color: white;
-            text-decoration: none;
-        }
-
+        /* --- UI Elements --- */
+        nav { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; }
+        
+        .logo { font-family: 'Press Start 2P', cursive; font-size: 1.1rem; color: white; text-decoration: none; }
         .logo span { color: #007bff; }
 
         .btn-pro {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 6px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
-            cursor: pointer;
-            transition: 0.3s;
+            background: #007bff; color: white; border: none; padding: 10px 18px;
+            border-radius: 6px; font-family: 'Press Start 2P', cursive; font-size: 0.6rem; cursor: pointer;
         }
 
-        .btn-pro:hover { background: #0056b3; }
-
-        /* --- Hero Section --- */
-        header {
-            text-align: center;
-            margin-top: 50px;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-
-        h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        h1 span {
-            color: #fff;
-            text-transform: lowercase;
-        }
-
-        p.subtitle {
-            color: #888;
-            font-size: 0.9rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
+        header { text-align: center; margin: 40px 0; }
+        h1 { font-family: 'Press Start 2P', cursive; font-size: 1.8rem; margin-bottom: 15px; }
+        h1 span { color: #fff; text-transform: lowercase; }
 
         /* --- Upload Container --- */
         .upload-container {
-            width: 90%;
-            max-width: 700px;
-            background: #111;
-            border: 2px dashed #333;
-            border-radius: 20px;
-            padding: 60px 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: 0.3s;
+            width: 90%; max-width: 700px; background: #111;
+            border: 2px dashed #333; border-radius: 20px;
+            padding: 50px 20px; text-align: center; cursor: pointer; transition: 0.3s;
         }
 
-        .upload-container:active {
-            transform: scale(0.98);
-            border-color: #007bff;
-        }
-
-        .icon-folder {
-            font-size: 50px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .upload-text {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.75rem;
-            line-height: 1.8;
-            color: #eee;
-        }
-
+        .upload-container:active { transform: scale(0.98); }
+        .upload-text { font-family: 'Press Start 2P', cursive; font-size: 0.7rem; color: #eee; line-height: 1.6; }
         .upload-text span { color: #007bff; }
 
-        /* --- Footer Bar --- */
-        .footer-bar {
-            width: 90%;
-            max-width: 700px;
-            background: #161616;
-            padding: 18px 20px;
-            border-radius: 12px;
-            color: #444;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.65rem;
-            border: 1px solid #222;
+        /* --- File List (TEMPAT MENUMPUK FILE) --- */
+        .file-list-wrapper {
+            width: 90%; max-width: 700px; margin-top: 25px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+
+        .file-item {
+            background: #161616; border: 1px solid #222;
+            padding: 15px 20px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .file-info {
+            font-family: 'Press Start 2P', cursive; font-size: 0.6rem;
+            color: #007bff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+            max-width: 70%;
+        }
+
+        .btn-download {
+            background: #222; color: #fff; text-decoration: none;
+            padding: 8px 12px; border-radius: 5px; font-size: 0.7rem;
+            font-family: sans-serif; font-weight: bold; border: 1px solid #333;
+        }
+
+        .btn-download:hover { background: #007bff; border-color: #007bff; }
+
+        .list-title {
+            align-self: flex-start; font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem; color: #444; margin-left: 5%; margin-bottom: 5px;
         }
 
         .hidden { display: none !important; }
-
-        /* Responsif Tablet/HP */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.2rem; }
-            .upload-text { font-size: 0.6rem; }
-            .logo { font-size: 0.9rem; }
-        }
     </style>
 </head>
 <body>
 
     <div id="name-overlay">
         <div class="name-box">
-            <h2>SIAPA NAMA ANDA?</h2>
-            <input type="text" id="usernameInput" placeholder="Ketik di sini...">
+            <h2 style="font-family:'Press Start 2P'; font-size:0.7rem; color:#007bff; margin-bottom:15px;">INPUT USERNAME</h2>
+            <input type="text" id="usernameInput" placeholder="Nama..." style="width:100%; padding:10px; margin-bottom:15px; background:#000; border:1px solid #333; color:#fff; text-align:center;">
             <button class="btn-pro" onclick="saveName()">MASUK</button>
         </div>
     </div>
@@ -201,64 +116,67 @@
 
     <header>
         <h1 id="greeting">Halo, <span id="userNameDisplay">...</span>!</h1>
-        <p class="subtitle">Kelola file proyekmu dengan aman di satu tempat.</p>
+        <p style="color:#888; font-size:0.9rem;">Kelola file proyekmu dengan aman di satu tempat.</p>
     </header>
 
     <div class="upload-container" id="uploadZone">
-        <span class="icon-folder">📂</span>
+        <div style="font-size: 40px; margin-bottom: 15px;">📂</div>
         <p class="upload-text">Ketuk untuk pilih file atau <span>Tarik ke sini</span></p>
         <input type="file" id="fileInput" style="display: none;" multiple>
     </div>
 
-    <div class="footer-bar" id="status-text">
-        FILE TERBARU
-    </div>
+    <div class="list-title">FILE TERBARU</div>
+    <div class="file-list-wrapper" id="fileList">
+        </div>
 
     <script>
         const overlay = document.getElementById('name-overlay');
-        const inputName = document.getElementById('usernameInput');
         const display = document.getElementById('userNameDisplay');
         const uploadZone = document.getElementById('uploadZone');
         const fileInput = document.getElementById('fileInput');
-        const statusText = document.getElementById('status-text');
+        const fileList = document.getElementById('fileList');
 
-        // 1. Cek Nama di LocalStorage
-        window.onload = function() {
-            const savedName = localStorage.getItem('user_aliando');
-            if (savedName) {
-                overlay.classList.add('hidden');
-                display.innerText = savedName;
-            }
+        // 1. Logic Nama
+        window.onload = () => {
+            const saved = localStorage.getItem('user_aliando');
+            if (saved) { overlay.classList.add('hidden'); display.innerText = saved; }
         };
 
-        // 2. Simpan Nama
         function saveName() {
-            const val = inputName.value;
-            if (val.trim() !== "") {
+            const val = document.getElementById('usernameInput').value;
+            if (val.trim()) {
                 localStorage.setItem('user_aliando', val);
                 display.innerText = val;
                 overlay.classList.add('hidden');
             }
         }
 
-        // 3. Logika Klik Upload Langsung
-        uploadZone.addEventListener('click', () => {
-            fileInput.click(); // Memicu file manager
-        });
+        // 2. Logic Upload & Tumpuk File
+        uploadZone.onclick = () => fileInput.click();
 
-        // 4. Deteksi saat file dipilih
-        fileInput.addEventListener('change', (e) => {
+        fileInput.onchange = (e) => {
             const files = e.target.files;
-            if (files.length > 0) {
-                statusText.innerText = "TERPILIH: " + files[0].name.toUpperCase();
-                statusText.style.color = "#007bff";
+            for (let file of files) {
+                addFileToUI(file);
             }
-        });
+        };
 
-        // Dukung Enter pada input nama
-        inputName.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') saveName();
-        });
+        function addFileToUI(file) {
+            // Membuat link download lokal (Blob URL)
+            const url = URL.createObjectURL(file);
+            
+            const item = document.createElement('div');
+            item.className = 'file-item';
+            item.innerHTML = `
+                <div class="file-info">
+                    ${file.name.toUpperCase()}
+                </div>
+                <a href="${url}" download="${file.name}" class="btn-download">UNDUH</a>
+            `;
+            
+            // Menumpuk file baru di paling atas
+            fileList.prepend(item);
+        }
     </script>
 </body>
 </html>
